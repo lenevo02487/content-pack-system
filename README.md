@@ -39,4 +39,4 @@ anything.**
 - Also on Gumroad: https://abhiphukan.gumroad.com
 - LinkedIn: https://www.linkedin.com/in/abhishek-phukan-a220b9448/
 
-*Built by Abhishek Phukan — Python Automation Developer & Content Pack Creator, Digboi, Assam, India.*
+*Built by Abhishek Phukan — Python Automation Developer & Content Pack Creator.*
