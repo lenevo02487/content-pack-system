@@ -1,0 +1,10 @@
+{
+  "business": "Sample Tea House",
+  "start_date": "2026-11-02",
+  "pillars": [
+    {"name": "Educate", "purpose": "educate", "share_percent": 34},
+    {"name": "Engage", "purpose": "engage", "share_percent": 26},
+    {"name": "Story", "purpose": "story", "share_percent": 20},
+    {"name": "Offer", "purpose": "convert", "share_percent": 20}
+  ]
+}
