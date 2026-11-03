@@ -1,42 +1,61 @@
-# Content Pack System — 15-Post Social Media Pack
+# Content Pack System — Pillars In, Validated Calendar Out
 
-A ready-to-use **15-post social media content pack** for a small business:
-two weeks of posts planned, written and scheduled — so a busy shop owner's
-page never goes silent.
+A small system that turns content *seeds* into a ready-to-post social
+media pack (CSV calendar + Markdown reading copy) for a small business —
+and refuses to ship a broken pack: generation runs a validation gate
+and exits non-zero if any post fails a check.
 
-Sample brand used in this pack: **Digboi Tea House** (a tea café in Digboi,
-Assam). For a real client, every caption, price and offer is rewritten with
-their actual business details.
+## How it works
 
-## What's inside
+1. **Content pillars first** (`pack_config.json`) — 4 pillars with fixed
+   shares that must sum to 100: Educate 34%, Engage 26%, Story 20%,
+   Offer 20%. The scheduler guarantees the mix lands exactly on target.
+2. **Seeds** (`seeds.json`) — one entry per post idea: pillar, platform,
+   format, theme, a fully written caption, design direction, hashtags,
+   best posting time, and optional repurposing notes (a Reel's last frame
+   becomes a Story teaser — derivatives are planned, not copy-pasted).
+3. **Schedule** — posts interleave pillars round-robin over consecutive
+   days (two on Sundays by default), so the feed never clumps one theme.
+4. **Validate** — every post must have a call to action, 3–10 well-formed
+   hashtags, no empty fields, no placeholder text, a weekday that matches
+   the real calendar, and a unique caption.
 
-| File | What it is |
-|---|---|
-| `content-pack.md` | The full pack — readable, post by post |
-| `content-pack.csv` | The same pack as a calendar (10 columns, spreadsheet-ready) |
+## Run it
 
-Every one of the 15 posts includes:
+```bash
+python generate.py --config pack_config.json --seeds seeds.json --out out/
+python -m unittest discover -s tests   # 5 tests
+```
 
-- Date and platform (Instagram / Facebook)
-- A fully written caption (with a light Hinglish touch for the local audience)
-- Design direction for the creative
-- Hashtags
-- Best posting time for that day
+## Sample run (actual output)
 
-## Why it works
+```
+OK: 15 posts validated, wrote out/content-pack.csv and content-pack.md
+    (2026-11-02 .. 2026-11-15)
+```
 
-Small businesses lose customers when their page goes quiet for weeks. A
-pre-planned pack means posting takes minutes a day — the thinking is already
-done: what to post, what to write, when to post it.
+A full generated pack is kept in `sample_output/` — 15 posts for a
+fictional sample tea house, with per-post pillar, purpose, platform
+adaptation and repurposing notes.
 
-## Hire me
+## Layout
 
-Want a content pack like this for your shop, café or coaching centre?
-**Demo first — I'll draft sample posts for YOUR business before you pay
-anything.**
+```
+content_pack/
+  model.py       Pillar / Seed / ScheduledPost dataclasses
+  generator.py   share-exact scheduling, pillar interleaving
+  validator.py   the quality gate (CTA, hashtags, weekdays, mix)
+  export.py      CSV calendar + Markdown pack
+generate.py      CLI — validate, then write
+```
 
-- Services & contact: https://www.fiverr.com/lenevo509
-- Also on Gumroad: https://abhiphukan.gumroad.com
-- LinkedIn: https://www.linkedin.com/in/abhishek-phukan-a220b9448/
+## Honest scope
 
-*Built by Abhishek Phukan — Python Automation Developer & Content Pack Creator.*
+Captions in the sample pack are real, finished writing for a fictional
+business. On a client pack, prices, offers and testimonials are replaced
+with the client's own verified details before anything is posted.
+
+## Want a pack for your business?
+
+Send me your business type and offers — I'll draft a free sample post in
+your voice first. Judge the writing, then decide. — Abhishek
